@@ -34,27 +34,19 @@ class Carrinho {
             }while (quantidade <=0)
 
             val produtoEscolhido = when (tipo) {
-                "x-burger" -> {
-                    Xburger(quantidade)
-                }
-                "x-salada" -> {
-                    Xsalada(quantidade)
-                }
-                "refrigerante" -> {
-                    Refrigerante(quantidade)
-                }
-                else -> {
-                    Suco(quantidade)
-                }
+                "x-burger" -> Xburger(quantidade)
+                "x-salada" -> Xsalada(quantidade)
+                "refrigerante" -> Refrigerante(quantidade)
+                "suco" -> Suco(quantidade)
+                "sorvete" -> Sorvete(quantidade)
+                else -> Mousse(quantidade)
             }
 
             when (tipo) {
-                "refrigerante" -> {
-                    escolherRefrigerante(produtoEscolhido as Refrigerante)
-                }
-                "suco" -> {
-                    escolherSuco(produtoEscolhido as Suco)
-                }
+                "refrigerante" -> escolherRefrigerante(produtoEscolhido as Refrigerante)
+                "suco" -> escolherSuco(produtoEscolhido as Suco)
+                "sorvete" -> escolherSorvete(produtoEscolhido as Sorvete)
+                "mousse" -> escolherMousse(produtoEscolhido as Mousse)
                 else -> adicionarObservacao(produtoEscolhido as Lanche)
             }
 
@@ -62,6 +54,114 @@ class Carrinho {
 
             println("\n---------- PRODUTO ADICIONADO AO CARRINHO ----------")
             produtoEscolhido.mostrarInformacoes()
+
+            mostrarTotalCarrinho()
+        }
+
+        fun adicionarCombo(opcao:Int){
+            val lanche:Lanche
+            val bebida:Bebida
+            val sobremesa:Sobremesa
+
+            var quantidade = 0
+            do{
+                try {
+                    print("\nDigite a quantidade de que deseja comprar do combo: ")
+                    quantidade = readln().toInt()
+
+                    if(quantidade <= 0){
+                        println("\nDigite um número maior que zero.")
+                    }
+                } catch (exception:IllegalArgumentException){
+                    println("\nFormato inválido! Para adicionar a quantidade, você deve informar o número correspondente.")
+                }
+            }while (quantidade <=0)
+
+            when(opcao){
+                1 -> {
+                    lanche = Xburger(1)
+                    bebida = Refrigerante(1)
+                    sobremesa = Sorvete(1)
+
+                    escolherRefrigerante(bebida)
+                    escolherSorvete(sobremesa)
+
+                    produtosAdicionados.add(Combo(lanche, bebida, sobremesa, "X-Burger, Refrigerante, Sorvete", quantidade))
+                }
+                2 -> {
+                    lanche = Xburger(1)
+                    bebida = Refrigerante(1)
+                    sobremesa = Mousse(1)
+
+                    escolherRefrigerante(bebida)
+                    escolherMousse(sobremesa)
+
+                    produtosAdicionados.add(Combo(lanche, bebida, sobremesa, "X-Burger, Refrigerante, Mousse", quantidade))
+                }
+                3 -> {
+                    lanche = Xburger(1)
+                    bebida = Suco(1)
+                    sobremesa = Sorvete(1)
+
+                    escolherSuco(bebida)
+                    escolherSorvete(sobremesa)
+
+                    produtosAdicionados.add(Combo(lanche, bebida, sobremesa, "X-Burger, Suco, Sorvete", quantidade))
+                }
+                4 -> {
+                    lanche = Xburger(1)
+                    bebida = Suco(1)
+                    sobremesa = Mousse(1)
+
+                    escolherSuco(bebida)
+                    escolherMousse(sobremesa)
+
+                    produtosAdicionados.add(Combo(lanche, bebida, sobremesa, "X-Burger, Suco, Mousse", quantidade))
+                }
+                5 -> {
+                    lanche = Xsalada(1)
+                    bebida = Refrigerante(1)
+                    sobremesa = Sorvete(1)
+
+                    escolherRefrigerante(bebida)
+                    escolherSorvete(sobremesa)
+
+                    produtosAdicionados.add(Combo(lanche, bebida, sobremesa, "X-Salada, Refrigerante, Sorvete", quantidade))
+                }
+                6 -> {
+                    lanche = Xsalada(1)
+                    bebida = Refrigerante(1)
+                    sobremesa = Mousse(1)
+
+                    escolherRefrigerante(bebida)
+                    escolherMousse(sobremesa)
+
+                    produtosAdicionados.add(Combo(lanche, bebida, sobremesa, "X-Salada, Refrigerante, Mousse", quantidade))
+                }
+                7 -> {
+                    lanche = Xsalada(1)
+                    bebida = Suco(1)
+                    sobremesa = Sorvete(1)
+
+                    escolherSuco(bebida)
+                    escolherSorvete(sobremesa)
+
+                    produtosAdicionados.add(Combo(lanche, bebida, sobremesa, "X-Salada, Suco, Sorvete", quantidade))
+                }
+                8 -> {
+                    lanche = Xsalada(1)
+                    bebida = Suco(1)
+                    sobremesa = Mousse(1)
+
+                    escolherSuco(bebida)
+                    escolherMousse(sobremesa)
+
+                    produtosAdicionados.add(Combo(lanche, bebida, sobremesa, "X-Salada, Suco, Mousse", quantidade))
+                }
+            }
+
+            println("\n---------- PRODUTO ADICIONADO AO CARRINHO ----------")
+            produtosAdicionados.last().mostrarInformacoes()
 
             mostrarTotalCarrinho()
         }
@@ -137,6 +237,88 @@ class Carrinho {
                         }
                         5 -> {
                             suco.tipo = "Natural One Limão Siciliano"
+                            return
+                        }
+                        else -> println("\nOpção inválida, tente novamente.")
+                    }
+                } catch (exception:IllegalArgumentException){
+                    println("\nFormato inválido, para escolher o item, você deve informar o número dele.")
+                }
+
+            } while (true)
+        }
+
+        private fun escolherSorvete(sorvete: Sorvete){
+            do{
+                println("\n---------- SORVETES DISPONÍVEIS ----------\n" +
+                        "\t1 - Chocolate\n" +
+                        "\t2 - Baunilha\n" +
+                        "\t3 - Flocos\n" +
+                        "\t4 - Creme\n" +
+                        "\t5 - Napolitano")
+                print("Digite o número correspondente a opção desejada: ")
+
+                try {
+                    when(readln().toInt()){
+                        1 -> {
+                            sorvete.sabor = "Chocolate"
+                            return
+                        }
+                        2 -> {
+                            sorvete.sabor = "Baunilha"
+                            return
+                        }
+                        3 -> {
+                            sorvete.sabor = "Flocos"
+                            return
+                        }
+                        4 -> {
+                            sorvete.sabor = "Creme"
+                            return
+                        }
+                        5 -> {
+                            sorvete.sabor = "Napolitano"
+                            return
+                        }
+                        else -> println("\nOpção inválida, tente novamente.")
+                    }
+                } catch (exception:IllegalArgumentException){
+                    println("\nFormato inválido, para escolher o item, você deve informar o número dele.")
+                }
+
+            } while (true)
+        }
+
+        private fun escolherMousse(mousse: Mousse){
+            do{
+                println("\n---------- MOUSSES DISPONÍVEIS ----------\n" +
+                        "\t1 - Chocolate\n" +
+                        "\t2 - Maracujá\n" +
+                        "\t3 - Limão\n" +
+                        "\t4 - Morango\n" +
+                        "\t5 - Leite Ninho")
+                print("Digite o número correspondente a opção desejada: ")
+
+                try {
+                    when(readln().toInt()){
+                        1 -> {
+                            mousse.sabor = "Chocolate"
+                            return
+                        }
+                        2 -> {
+                            mousse.sabor = "Maracujá"
+                            return
+                        }
+                        3 -> {
+                            mousse.sabor = "Limão"
+                            return
+                        }
+                        4 -> {
+                            mousse.sabor = "Morango"
+                            return
+                        }
+                        5 -> {
+                            mousse.sabor = "Leite Ninho"
                             return
                         }
                         else -> println("\nOpção inválida, tente novamente.")
