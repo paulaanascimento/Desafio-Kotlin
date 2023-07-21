@@ -37,7 +37,7 @@ Essa classe é responsável por gerenciar o carrinho de compras do cliente. Ela 
 ## Classe 'FinalizarPedido'
 Essa classe representa o processo final de finalização do pedido. Ela oferece um método `selecionarPagamento()` que exibe as formas de pagamento disponíveis e permite ao cliente escolher a opção desejada. Se o cliente optar por pagar em dinheiro, é solicitado o valor pago, e o troco é calculado e exibido. Ao final, o pedido é finalizado, e um código único é gerado para que o cliente possa retirar o pedido na lanchonete.
 
-## Arquivo Totem
+## Arquivo 'Totem'
 Local onde está armazenada a função `main`, `menuPrincipal()`, `lanche()`, `bebida()`, `sobremesa()`, `combo()` e `continuar()`
 
 Essas funções são responsáveis por exibir os menus principais e secundários do programa, onde o cliente pode escolher os produtos a serem adicionados ao carrinho, editar ou remover itens do carrinho e finalizar o pedido.
