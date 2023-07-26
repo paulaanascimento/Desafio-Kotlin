@@ -1,9 +1,11 @@
 package usercase
 
 import model.*
+import java.io.BufferedReader
+import java.io.InputStream
+import java.io.InputStreamReader
 
 class Carrinho {
-    companion object{
         val produtosAdicionados = ArrayList<Produto>()
 
         private fun mostrarIngredientes(tipo:String) {
@@ -17,13 +19,13 @@ class Carrinho {
             }
         }
 
-        fun adicionar(tipo: String){
+        fun adicionar(tipo: String,inputStream: InputStream){
             mostrarIngredientes(tipo)
             var quantidade = 0
             do{
                 try {
                     print("\nDigite a quantidade de $tipo que deseja comprar: ")
-                    quantidade = readln().toInt()
+                    quantidade = BufferedReader(InputStreamReader(inputStream)).readLine().toInt()
 
                     if(quantidade <= 0){
                         println("\nDigite um número maior que zero.")
@@ -43,11 +45,11 @@ class Carrinho {
             }
 
             when (tipo) {
-                "refrigerante" -> escolherRefrigerante(produtoEscolhido as Refrigerante)
-                "suco" -> escolherSuco(produtoEscolhido as Suco)
-                "sorvete" -> escolherSorvete(produtoEscolhido as Sorvete)
-                "mousse" -> escolherMousse(produtoEscolhido as Mousse)
-                else -> adicionarObservacao(produtoEscolhido as Lanche)
+                "refrigerante" -> escolherRefrigerante(produtoEscolhido as Refrigerante, "5".byteInputStream())
+                "suco" -> escolherSuco(produtoEscolhido as Suco, "3".byteInputStream())
+                "sorvete" -> escolherSorvete(produtoEscolhido as Sorvete, "1".byteInputStream())
+                "mousse" -> escolherMousse(produtoEscolhido as Mousse, "4".byteInputStream())
+                else -> adicionarObservacao(produtoEscolhido as Lanche, "2".byteInputStream())
             }
 
             produtosAdicionados.add(produtoEscolhido)
@@ -83,8 +85,8 @@ class Carrinho {
                     bebida = Refrigerante(1)
                     sobremesa = Sorvete(1)
 
-                    escolherRefrigerante(bebida)
-                    escolherSorvete(sobremesa)
+                    //escolherRefrigerante(bebida)
+                    //escolherSorvete(sobremesa)
 
                     produtosAdicionados.add(Combo(lanche, bebida, sobremesa, "X-Burger, Refrigerante, Sorvete", quantidade))
                 }
@@ -93,8 +95,8 @@ class Carrinho {
                     bebida = Refrigerante(1)
                     sobremesa = Mousse(1)
 
-                    escolherRefrigerante(bebida)
-                    escolherMousse(sobremesa)
+                    //escolherRefrigerante(bebida)
+                    //escolherMousse(sobremesa)
 
                     produtosAdicionados.add(Combo(lanche, bebida, sobremesa, "X-Burger, Refrigerante, Mousse", quantidade))
                 }
@@ -103,8 +105,8 @@ class Carrinho {
                     bebida = Suco(1)
                     sobremesa = Sorvete(1)
 
-                    escolherSuco(bebida)
-                    escolherSorvete(sobremesa)
+                    //escolherSuco(bebida)
+                    //escolherSorvete(sobremesa)
 
                     produtosAdicionados.add(Combo(lanche, bebida, sobremesa, "X-Burger, Suco, Sorvete", quantidade))
                 }
@@ -113,8 +115,8 @@ class Carrinho {
                     bebida = Suco(1)
                     sobremesa = Mousse(1)
 
-                    escolherSuco(bebida)
-                    escolherMousse(sobremesa)
+                    //escolherSuco(bebida)
+                    //escolherMousse(sobremesa)
 
                     produtosAdicionados.add(Combo(lanche, bebida, sobremesa, "X-Burger, Suco, Mousse", quantidade))
                 }
@@ -123,8 +125,8 @@ class Carrinho {
                     bebida = Refrigerante(1)
                     sobremesa = Sorvete(1)
 
-                    escolherRefrigerante(bebida)
-                    escolherSorvete(sobremesa)
+                    //escolherRefrigerante(bebida)
+                    //escolherSorvete(sobremesa)
 
                     produtosAdicionados.add(Combo(lanche, bebida, sobremesa, "X-Salada, Refrigerante, Sorvete", quantidade))
                 }
@@ -133,8 +135,8 @@ class Carrinho {
                     bebida = Refrigerante(1)
                     sobremesa = Mousse(1)
 
-                    escolherRefrigerante(bebida)
-                    escolherMousse(sobremesa)
+                    //escolherRefrigerante(bebida)
+                    //escolherMousse(sobremesa)
 
                     produtosAdicionados.add(Combo(lanche, bebida, sobremesa, "X-Salada, Refrigerante, Mousse", quantidade))
                 }
@@ -143,8 +145,8 @@ class Carrinho {
                     bebida = Suco(1)
                     sobremesa = Sorvete(1)
 
-                    escolherSuco(bebida)
-                    escolherSorvete(sobremesa)
+                    //escolherSuco(bebida)
+                    //escolherSorvete(sobremesa)
 
                     produtosAdicionados.add(Combo(lanche, bebida, sobremesa, "X-Salada, Suco, Sorvete", quantidade))
                 }
@@ -153,8 +155,8 @@ class Carrinho {
                     bebida = Suco(1)
                     sobremesa = Mousse(1)
 
-                    escolherSuco(bebida)
-                    escolherMousse(sobremesa)
+                    //escolherSuco(bebida)
+                    //escolherMousse(sobremesa)
 
                     produtosAdicionados.add(Combo(lanche, bebida, sobremesa, "X-Salada, Suco, Mousse", quantidade))
                 }
@@ -166,7 +168,7 @@ class Carrinho {
             mostrarTotalCarrinho()
         }
 
-        private fun escolherRefrigerante(refrigerante: Refrigerante){
+        private fun escolherRefrigerante(refrigerante: Refrigerante, inputStream: InputStream){
             do{
                 println("\n---------- REFRIGERANTES DISPONÍVEIS ----------\n" +
                         "\t1 - Coca-Cola Original\n" +
@@ -177,7 +179,7 @@ class Carrinho {
                 print("Digite o número correspondente a opção desejada: ")
 
                 try {
-                    when(readln().toInt()){
+                    when(BufferedReader(InputStreamReader(inputStream)).readLine().toInt()){
                         1 -> {
                             refrigerante.tipo = "Coca-Cola Original"
                             return
@@ -207,7 +209,7 @@ class Carrinho {
             } while (true)
         }
 
-        private fun escolherSuco(suco: Suco){
+        private fun escolherSuco(suco: Suco, inputStream: InputStream){
             do{
                 println("\n---------- SUCOS DISPONÍVEIS ----------\n" +
                         "\t1 - Del Valle Laranja\n" +
@@ -218,7 +220,7 @@ class Carrinho {
                 print("Digite o número correspondente a opção desejada: ")
 
                 try {
-                    when(readln().toInt()){
+                    when(BufferedReader(InputStreamReader(inputStream)).readLine().toInt()){
                         1 -> {
                             suco.tipo = "Del Valle Laranja"
                             return
@@ -248,7 +250,7 @@ class Carrinho {
             } while (true)
         }
 
-        private fun escolherSorvete(sorvete: Sorvete){
+        private fun escolherSorvete(sorvete: Sorvete, inputStream: InputStream){
             do{
                 println("\n---------- SORVETES DISPONÍVEIS ----------\n" +
                         "\t1 - Chocolate\n" +
@@ -259,7 +261,7 @@ class Carrinho {
                 print("Digite o número correspondente a opção desejada: ")
 
                 try {
-                    when(readln().toInt()){
+                    when(BufferedReader(InputStreamReader(inputStream)).readLine().toInt()){
                         1 -> {
                             sorvete.sabor = "Chocolate"
                             return
@@ -289,7 +291,7 @@ class Carrinho {
             } while (true)
         }
 
-        private fun escolherMousse(mousse: Mousse){
+        private fun escolherMousse(mousse: Mousse, inputStream: InputStream){
             do{
                 println("\n---------- MOUSSES DISPONÍVEIS ----------\n" +
                         "\t1 - Chocolate\n" +
@@ -300,7 +302,7 @@ class Carrinho {
                 print("Digite o número correspondente a opção desejada: ")
 
                 try {
-                    when(readln().toInt()){
+                    when(BufferedReader(InputStreamReader(inputStream)).readLine().toInt()){
                         1 -> {
                             mousse.sabor = "Chocolate"
                             return
@@ -330,7 +332,7 @@ class Carrinho {
             } while (true)
         }
 
-        private fun adicionarObservacao(lanche: Lanche){
+        private fun adicionarObservacao(lanche: Lanche, inputStream: InputStream){
             do{
                 println("\nDeseja adicionar alguma observação?\n" +
                         "\t1 - Sim\n" +
@@ -338,7 +340,7 @@ class Carrinho {
                 print("Digite o número correspondente a opção desejada: ")
 
                 try {
-                    when(readln().toInt()){
+                    when(BufferedReader(InputStreamReader(inputStream)).readLine().toInt()){
                         1 -> {
                             println("\n---------- ADICIONANDO OBSERVAÇÃO ----------")
                             print("Escreva a sua observação: ")
@@ -392,7 +394,7 @@ class Carrinho {
                     quantidade = readln().toInt()
 
                     if(quantidade <= 0){
-                            println("\nDigite um número maior que zero.")
+                        println("\nDigite um número maior que zero.")
                     }
                 }while (quantidade <=0)
 
@@ -422,5 +424,4 @@ class Carrinho {
                 println(exception.message)
             }
         }
-    }
 }
