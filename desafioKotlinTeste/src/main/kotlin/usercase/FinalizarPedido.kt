@@ -6,7 +6,7 @@ class FinalizarPedido {
 
     fun selecionarPagamento() {
         carrinho.mostrarProdutosAdicionados()
-        carrinho.mostrarTotalCarrinho()
+//        carrinho.mostrarTotalCarrinho()
 
         id++
         do {

@@ -26,7 +26,7 @@ fun menuPrincipal(){
                 1 -> lanche()
                 2 -> bebida()
                 3 -> sobremesa()
-                4 -> combo()
+//                4 -> combo()
                 else -> println("\nOpção inválida, tente novamente.")
             }
         } catch (exception:IllegalArgumentException){
@@ -117,62 +117,62 @@ fun sobremesa(){
     } while (true)
 }
 
-fun combo(){
-    idCombo++
-    do{
-        println("\n---------- COMBO ----------\n" +
-                "\t1 - X-Burger, Refrigerante, Sorvete\n" +
-                "\t2 - X-Burger, Refrigerante, Mousse\n" +
-                "\t3 - X-Burger, Suco, Sorvete\n" +
-                "\t4 - X-Burger, Suco, Mousse\n" +
-                "\t5 - X-Salada, Refrigerante, Sorvete\n" +
-                "\t6 - X-Salada, Refrigerante, Mousse\n" +
-                "\t7 - X-Salada, Suco, Sorvete\n" +
-                "\t8 - X-Salada, Suco, Mousse\n")
-        print("Digite o número correspondente ao item desejado: ")
-
-        try {
-            when(readln().toInt()){
-                1 -> {
-                    carrinho.adicionarCombo(1)
-                    continuar()
-                }
-                2 -> {
-                    carrinho.adicionarCombo(2)
-                    continuar()
-                }
-                3 -> {
-                    carrinho.adicionarCombo(3)
-                    continuar()
-                }
-                4 -> {
-                    carrinho.adicionarCombo(4)
-                    continuar()
-                }
-                5 -> {
-                    carrinho.adicionarCombo(5)
-                    continuar()
-                }
-                6 -> {
-                    carrinho.adicionarCombo(6)
-                    continuar()
-                }
-                7 -> {
-                    carrinho.adicionarCombo(7)
-                    continuar()
-                }
-                8 -> {
-                    carrinho.adicionarCombo(8)
-                    continuar()
-                }
-                else -> println("\nOpção inválida, tente novamente.")
-            }
-        } catch (exception:IllegalArgumentException){
-            println("\nFormato inválido, para escolher o item, você deve informar o número dele.")
-        }
-
-    } while (true)
-}
+//fun combo(){
+//    idCombo++
+//    do{
+//        println("\n---------- COMBO ----------\n" +
+//                "\t1 - X-Burger, Refrigerante, Sorvete\n" +
+//                "\t2 - X-Burger, Refrigerante, Mousse\n" +
+//                "\t3 - X-Burger, Suco, Sorvete\n" +
+//                "\t4 - X-Burger, Suco, Mousse\n" +
+//                "\t5 - X-Salada, Refrigerante, Sorvete\n" +
+//                "\t6 - X-Salada, Refrigerante, Mousse\n" +
+//                "\t7 - X-Salada, Suco, Sorvete\n" +
+//                "\t8 - X-Salada, Suco, Mousse\n")
+//        print("Digite o número correspondente ao item desejado: ")
+//
+//        try {
+//            when(readln().toInt()){
+//                1 -> {
+//                    carrinho.adicionarCombo(1)
+//                    continuar()
+//                }
+//                2 -> {
+//                    carrinho.adicionarCombo(2)
+//                    continuar()
+//                }
+//                3 -> {
+//                    carrinho.adicionarCombo(3)
+//                    continuar()
+//                }
+//                4 -> {
+//                    carrinho.adicionarCombo(4)
+//                    continuar()
+//                }
+//                5 -> {
+//                    carrinho.adicionarCombo(5)
+//                    continuar()
+//                }
+//                6 -> {
+//                    carrinho.adicionarCombo(6)
+//                    continuar()
+//                }
+//                7 -> {
+//                    carrinho.adicionarCombo(7)
+//                    continuar()
+//                }
+//                8 -> {
+//                    carrinho.adicionarCombo(8)
+//                    continuar()
+//                }
+//                else -> println("\nOpção inválida, tente novamente.")
+//            }
+//        } catch (exception:IllegalArgumentException){
+//            println("\nFormato inválido, para escolher o item, você deve informar o número dele.")
+//        }
+//
+//    } while (true)
+//}
 
 fun continuar(){
     do{
@@ -188,8 +188,8 @@ fun continuar(){
             when(readln().toInt()){
                 1 -> carrinho.mostrarProdutosAdicionados()
                 2 -> menuPrincipal()
-                3 -> carrinho.editarItem()
-                4 -> carrinho.remover()
+//                3 -> carrinho.editarItem()
+//                4 -> carrinho.remover()
                 5 -> {
                     if(carrinho.produtosAdicionados.isEmpty()){
                         throw UnsupportedOperationException("\nO carrinho está vazio.")
