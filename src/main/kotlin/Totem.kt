@@ -3,7 +3,8 @@ import model.idCombo
 import model.idLanche
 import model.idSobremesa
 import usercase.Carrinho
-import usercase.FinalizarPedido
+
+val carrinho = Carrinho()
 
 fun main() {
     print("\nBOAS VINDAS À LANCHONETE FASTFOOD")
@@ -45,11 +46,11 @@ fun lanche(){
         try {
             when(readln().toInt()){
                 1 -> {
-                    Carrinho.adicionar("x-burger")
+                    carrinho.adicionar("x-burger")
                     continuar()
                 }
                 2 -> {
-                    Carrinho.adicionar("x-salada")
+                    carrinho.adicionar("x-salada")
                     continuar()
                 }
                 else -> println("\nOpção inválida, tente novamente.")
@@ -72,11 +73,11 @@ fun bebida(){
         try {
             when(readln().toInt()){
                 1 -> {
-                    Carrinho.adicionar("refrigerante")
+                    carrinho.adicionar("refrigerante")
                     continuar()
                 }
                 2 -> {
-                    Carrinho.adicionar("suco")
+                    carrinho.adicionar("suco")
                     continuar()
                 }
                 else -> println("\nOpção inválida, tente novamente.")
@@ -99,11 +100,11 @@ fun sobremesa(){
         try {
             when(readln().toInt()){
                 1 -> {
-                    Carrinho.adicionar("sorvete")
+                    carrinho.adicionar("sorvete")
                     continuar()
                 }
                 2 -> {
-                    Carrinho.adicionar("mousse")
+                    carrinho.adicionar("mousse")
                     continuar()
                 }
                 else -> println("\nOpção inválida, tente novamente.")
@@ -132,35 +133,35 @@ fun combo(){
         try {
             when(readln().toInt()){
                 1 -> {
-                    Carrinho.adicionarCombo(1)
+                    carrinho.adicionarCombo(1)
                     continuar()
                 }
                 2 -> {
-                    Carrinho.adicionarCombo(2)
+                    carrinho.adicionarCombo(2)
                     continuar()
                 }
                 3 -> {
-                    Carrinho.adicionarCombo(3)
+                    carrinho.adicionarCombo(3)
                     continuar()
                 }
                 4 -> {
-                    Carrinho.adicionarCombo(4)
+                    carrinho.adicionarCombo(4)
                     continuar()
                 }
                 5 -> {
-                    Carrinho.adicionarCombo(5)
+                    carrinho.adicionarCombo(5)
                     continuar()
                 }
                 6 -> {
-                    Carrinho.adicionarCombo(6)
+                    carrinho.adicionarCombo(6)
                     continuar()
                 }
                 7 -> {
-                    Carrinho.adicionarCombo(7)
+                    carrinho.adicionarCombo(7)
                     continuar()
                 }
                 8 -> {
-                    Carrinho.adicionarCombo(8)
+                    carrinho.adicionarCombo(8)
                     continuar()
                 }
                 else -> println("\nOpção inválida, tente novamente.")
@@ -184,17 +185,21 @@ fun continuar(){
 
         try {
             when(readln().toInt()){
-                1 -> Carrinho.mostrarProdutosAdicionados()
+                1 -> {
+                    val carrinhoView = CarrinhoView()
+                    carrinhoView.exibirCarrinho()
+                }
                 2 -> menuPrincipal()
-                3 -> Carrinho.editarItem()
-                4 -> Carrinho.remover()
+                3 -> carrinho.editarItem()
+                4 -> carrinho.remover()
                 5 -> {
-                    if(Carrinho.produtosAdicionados.isEmpty()){
+                    if(carrinho.produtosAdicionados.isEmpty()){
                        throw UnsupportedOperationException("\nO carrinho está vazio.")
                     } else {
-                        FinalizarPedido.selecionarPagamento()
+                        val finalizacaoDoPedido = FinalizacaoDoPedido()
+                        finalizacaoDoPedido.finalizarPedido()
                         Thread.sleep(5000)
-                        Carrinho.produtosAdicionados.clear()
+                        carrinho.produtosAdicionados.clear()
                         limparTerminal()
                         main()
                     }
