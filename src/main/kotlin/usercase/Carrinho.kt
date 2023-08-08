@@ -1,15 +1,23 @@
 package usercase
 
-import CarrinhoView
-import model.*
+import EntradaDoUsuario
+import model.Produtos.*
+import model.Produtos.Bebidas.Refrigerante
+import model.Produtos.Bebidas.Suco
+import model.Produtos.Lanches.Lanche
+import model.Produtos.Lanches.Xburger
+import model.Produtos.Lanches.Xsalada
+import model.Produtos.Sobremesas.Mousse
+import model.Produtos.Sobremesas.Sorvete
+
 
 class Carrinho {
-    private val carrinhoView = CarrinhoView()
     val produtosAdicionados = ArrayList<Produto>()
 
-    private val opcoesRefrigerante =
+    val opcoesRefrigerante =
         listOf("Coca-Cola Original", "Cola-Cola Sem Açúcar", "Guaraná Mineiro", "Fanta Laranja", "Fanta Uva")
-    private val opcoesSuco =
+
+    val opcoesSuco =
         listOf(
         "Del Valle Laranja",
         "Del Valle Uva",
@@ -18,9 +26,9 @@ class Carrinho {
         "Natural One Limão Siciliano"
     )
 
-    private val opcoesSorvete = listOf("Chocolate", "Baunilha", "Flocos", "Creme", "Napolitano")
+    val opcoesSorvete = listOf("Chocolate", "Baunilha", "Flocos", "Creme", "Napolitano")
 
-    private val opcoesMousses = listOf("Chocolate", "Maracujá", "Limão", "Morango", "Leite Ninho")
+    val opcoesMousses = listOf("Chocolate", "Maracujá", "Limão", "Morango", "Leite Ninho")
 
     private fun mostrarIngredientes(tipo: String) {
         when (tipo) {
@@ -36,19 +44,7 @@ class Carrinho {
 
     fun adicionar(tipo: String) {
         mostrarIngredientes(tipo)
-        var quantidade = 0
-        do {
-            try {
-                print("\nDigite a quantidade de $tipo que deseja comprar: ")
-                quantidade = readln().toInt()
-
-                if (quantidade <= 0) {
-                    println("\nDigite um número maior que zero.")
-                }
-            } catch (exception: IllegalArgumentException) {
-                println("\nFormato inválido! Para adicionar a quantidade, você deve informar o número correspondente.")
-            }
-        } while (quantidade <= 0)
+        val quantidade = EntradaDoUsuario.lerQuantidade(tipo)
 
         val produtoEscolhido = when (tipo) {
             "x-burger" -> Xburger(quantidade)
@@ -72,125 +68,34 @@ class Carrinho {
         println("\n---------- PRODUTO ADICIONADO AO CARRINHO ----------")
         produtoEscolhido.mostrarInformacoes()
 
-        carrinhoView.exibirTotal()
+        exibirTotal()
     }
 
     fun adicionarCombo(opcao: Int) {
-        val lanche: Lanche
-        val bebida: Bebida
-        val sobremesa: Sobremesa
 
-        var quantidade = 0
-        do {
-            try {
-                print("\nDigite a quantidade de que deseja comprar do combo: ")
-                quantidade = readln().toInt()
+        val quantidade = EntradaDoUsuario.lerQuantidade("combo")
 
-                if (quantidade <= 0) {
-                    println("\nDigite um número maior que zero.")
-                }
-            } catch (exception: IllegalArgumentException) {
-                println("\nFormato inválido! Para adicionar a quantidade, você deve informar o número correspondente.")
-            }
-        } while (quantidade <= 0)
-
-        when (opcao) {
-            1 -> {
-                lanche = Xburger(1)
-                bebida = Refrigerante(1)
-                sobremesa = Sorvete(1)
-
-                escolherProduto(bebida, opcoesRefrigerante, "REFRIGERANTES")
-                escolherProduto(sobremesa, opcoesSorvete, "SORVETES")
-
-                produtosAdicionados.add(Combo(lanche, bebida, sobremesa, "X-Burger, Refrigerante, Sorvete", quantidade))
-            }
-
-            2 -> {
-                lanche = Xburger(1)
-                bebida = Refrigerante(1)
-                sobremesa = Mousse(1)
-
-                escolherProduto(bebida, opcoesRefrigerante, "REFRIGERANTES")
-                escolherProduto(sobremesa, opcoesMousses, "MOUSSES")
-
-                produtosAdicionados.add(Combo(lanche, bebida, sobremesa, "X-Burger, Refrigerante, Mousse", quantidade))
-            }
-
-            3 -> {
-                lanche = Xburger(1)
-                bebida = Suco(1)
-                sobremesa = Sorvete(1)
-
-                escolherProduto(bebida, opcoesSuco, "SUCOS")
-                escolherProduto(sobremesa, opcoesSorvete, "SORVETES")
-
-                produtosAdicionados.add(Combo(lanche, bebida, sobremesa, "X-Burger, Suco, Sorvete", quantidade))
-            }
-
-            4 -> {
-                lanche = Xburger(1)
-                bebida = Suco(1)
-                sobremesa = Mousse(1)
-
-                escolherProduto(bebida, opcoesSuco, "SUCOS")
-                escolherProduto(sobremesa, opcoesMousses, "MOUSSES")
-
-                produtosAdicionados.add(Combo(lanche, bebida, sobremesa, "X-Burger, Suco, Mousse", quantidade))
-            }
-
-            5 -> {
-                lanche = Xsalada(1)
-                bebida = Refrigerante(1)
-                sobremesa = Sorvete(1)
-
-                escolherProduto(bebida, opcoesRefrigerante, "REFRIGERANTES")
-                escolherProduto(sobremesa, opcoesSorvete, "SORVETES")
-
-                produtosAdicionados.add(Combo(lanche, bebida, sobremesa, "X-Salada, Refrigerante, Sorvete", quantidade))
-            }
-
-            6 -> {
-                lanche = Xsalada(1)
-                bebida = Refrigerante(1)
-                sobremesa = Mousse(1)
-
-                escolherProduto(bebida, opcoesRefrigerante, "REFRIGERANTES")
-                escolherProduto(sobremesa, opcoesMousses, "MOUSSES")
-
-                produtosAdicionados.add(Combo(lanche, bebida, sobremesa, "X-Salada, Refrigerante, Mousse", quantidade))
-            }
-
-            7 -> {
-                lanche = Xsalada(1)
-                bebida = Suco(1)
-                sobremesa = Sorvete(1)
-
-                escolherProduto(bebida, opcoesSuco, "SUCOS")
-                escolherProduto(sobremesa, opcoesSorvete, "SORVETES")
-
-                produtosAdicionados.add(Combo(lanche, bebida, sobremesa, "X-Salada, Suco, Sorvete", quantidade))
-            }
-
-            8 -> {
-                lanche = Xsalada(1)
-                bebida = Suco(1)
-                sobremesa = Mousse(1)
-
-                escolherProduto(bebida, opcoesSuco, "SUCOS")
-                escolherProduto(sobremesa, opcoesMousses, "MOUSSES")
-
-                produtosAdicionados.add(Combo(lanche, bebida, sobremesa, "X-Salada, Suco, Mousse", quantidade))
-            }
+        val comboEscolhido = when (opcao) {
+            1 -> Combo1(quantidade)
+            2 -> Combo2(quantidade)
+            3 -> Combo3(quantidade)
+            4 -> Combo4(quantidade)
+            5 -> Combo5(quantidade)
+            6 -> Combo6(quantidade)
+            7 -> Combo7(quantidade)
+            8 -> Combo8(quantidade)
+            else -> throw IllegalArgumentException("Opção inválida")
         }
 
-        println("\n---------- PRODUTO ADICIONADO AO CARRINHO ----------")
-        produtosAdicionados.last().mostrarInformacoes()
+        produtosAdicionados.add(comboEscolhido)
 
-        carrinhoView.exibirTotal()
+        println("\n---------- PRODUTO ADICIONADO AO CARRINHO ----------")
+        comboEscolhido.mostrarInformacoes()
+
+        exibirTotal()
     }
 
-    private fun escolherProduto(produto: Produto, opcoes: List<String>, categoria: String) {
+    fun escolherProduto(produto: Produto, opcoes: List<String>, categoria: String) {
         do {
             println("\n---------- $categoria DISPONÍVEIS ----------")
             opcoes.forEachIndexed { index, opcao ->
@@ -277,7 +182,7 @@ class Carrinho {
 
             println("\n---------- PRODUTO EDITADO ----------")
             produto.mostrarInformacoes()
-            carrinhoView.exibirTotal()
+            exibirTotal()
         } catch (exception: IllegalArgumentException) {
             println("\nFormato inválido! Para adicionar a quantidade, você deve informar o número correspondente.")
         } catch (exception: NoSuchElementException) {
@@ -294,9 +199,18 @@ class Carrinho {
             produto.mostrarInformacoes()
             produtosAdicionados.remove(produto)
             println("\nO PRODUTO ACIMA FOI REMOVIDO COM SUCESSO!")
-            carrinhoView.exibirTotal()
+            exibirTotal()
         } catch (exception: NoSuchElementException) {
             println(exception.message)
         }
+    }
+
+    fun exibirCarrinho() {
+        println("\n---------- CARRINHO ----------")
+        produtosAdicionados.forEach { produto: Produto -> produto.mostrarInformacoes() }
+    }
+
+    fun exibirTotal() {
+        println("\nVALOR TOTAL DOS PEDIDOS: ${calcularTotalCarrinho()}")
     }
 }

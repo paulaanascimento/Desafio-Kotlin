@@ -1,10 +1,12 @@
+package usercase
+
 class FinalizacaoDoPedido {
     private val pagamento = Pagamento()
-    private val carrinhoView = CarrinhoView()
+    private val carrinho = Carrinho()
 
     fun finalizarPedido() {
-        carrinhoView.exibirCarrinho()
-        carrinhoView.exibirTotal()
+        carrinho.exibirCarrinho()
+        carrinho.exibirTotal()
         pagamento.selecionarPagamento()
     }
 }

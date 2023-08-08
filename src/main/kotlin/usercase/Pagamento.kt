@@ -1,4 +1,9 @@
-import usercase.Carrinho
+package usercase
+
+import model.Pagamento.CartaoDeCredito
+import model.Pagamento.CartaoDeDebito
+import model.Pagamento.Dinheiro
+import model.Pagamento.ValeRefeicao
 
 class Pagamento {
     private val carrinho = Carrinho()

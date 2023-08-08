@@ -1,13 +1,14 @@
-import model.idBebida
-import model.idCombo
-import model.idLanche
-import model.idSobremesa
+import model.Produtos.Bebidas.Bebida
+import model.Produtos.Combo
+import model.Produtos.Lanches.Lanche
+import model.Produtos.Sobremesas.Sobremesa
 import usercase.Carrinho
+import usercase.FinalizacaoDoPedido
 
 val carrinho = Carrinho()
 
 fun main() {
-    print("\nBOAS VINDAS À LANCHONETE FASTFOOD")
+    print(Constantes.BOAS_VINDAS)
     menuPrincipal()
 }
 
@@ -18,7 +19,7 @@ fun menuPrincipal(){
                 "\t2 - Bebida\n" +
                 "\t3 - Sobremesa\n" +
                 "\t4 - Combo")
-        print("Digite o número correspondente ao item desejado: ")
+        print(Constantes.ITEM_DESEJADO)
 
         try {
             when(readln().toInt()){
@@ -36,12 +37,12 @@ fun menuPrincipal(){
 }
 
 fun lanche(){
-    idLanche++
+    Lanche.idLanche++
     do{
         println("\n---------- LANCHE ----------\n" +
                 "\t1 - X-Burger R$10,00\n" +
                 "\t2 - X-Salada R$12,00")
-        print("Digite o número correspondente ao item desejado: ")
+        print(Constantes.ITEM_DESEJADO)
 
         try {
             when(readln().toInt()){
@@ -63,12 +64,12 @@ fun lanche(){
 }
 
 fun bebida(){
-    idBebida++
+    Bebida.idBebida++
     do{
         println("\n---------- BEBIDA ----------\n" +
                 "\t1 - Refrigerante R$8,00\n" +
                 "\t2 - Suco R$6,00")
-        print("Digite o número correspondente ao item desejado: ")
+        print(Constantes.ITEM_DESEJADO)
 
         try {
             when(readln().toInt()){
@@ -90,12 +91,12 @@ fun bebida(){
 }
 
 fun sobremesa(){
-    idSobremesa++
+    Sobremesa.idSobremesa++
     do{
         println("\n---------- SOBREMESA ----------\n" +
                 "\t1 - Sorvete R$7,00\n" +
                 "\t2 - Mousse R$5,00")
-        print("Digite o número correspondente ao item desejado: ")
+        print(Constantes.ITEM_DESEJADO)
 
         try {
             when(readln().toInt()){
@@ -117,7 +118,7 @@ fun sobremesa(){
 }
 
 fun combo(){
-    idCombo++
+    Combo.idCombo++
     do{
         println("\n---------- COMBO ----------\n" +
                 "\t1 - X-Burger, Refrigerante, Sorvete\n" +
@@ -128,7 +129,7 @@ fun combo(){
                 "\t6 - X-Salada, Refrigerante, Mousse\n" +
                 "\t7 - X-Salada, Suco, Sorvete\n" +
                 "\t8 - X-Salada, Suco, Mousse\n")
-        print("Digite o número correspondente ao item desejado: ")
+        print(Constantes.ITEM_DESEJADO)
 
         try {
             when(readln().toInt()){
@@ -181,14 +182,11 @@ fun continuar(){
                 "\t3 - Editar Item\n" +
                 "\t4 - Remover Item\n" +
                 "\t5 - Finalizar Pedido")
-        print("Digite o número correspondente a opção desejada: ")
+        print(Constantes.OPCAO_DESEJADA)
 
         try {
             when(readln().toInt()){
-                1 -> {
-                    val carrinhoView = CarrinhoView()
-                    carrinhoView.exibirCarrinho()
-                }
+                1 -> carrinho.exibirCarrinho()
                 2 -> menuPrincipal()
                 3 -> carrinho.editarItem()
                 4 -> carrinho.remover()

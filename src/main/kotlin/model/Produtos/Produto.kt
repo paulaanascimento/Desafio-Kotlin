@@ -1,9 +1,4 @@
-package model
-
-var idLanche = 9
-var idBebida = 9
-var idSobremesa = 9
-var idCombo = 9
+package model.Produtos
 
 abstract class Produto (val codigo:String, var quantidade:Int, val nome:String, val valor:Double){
     var tipo = ""

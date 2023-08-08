@@ -1,5 +1,9 @@
+package model.Pagamento
+
+import Constantes
+
 class CartaoDeDebito : FormaDePagamento {
     override fun processarPagamento(valor: Double) {
-        println("\nCompra finalizada com sucesso!Boa refeição!")
+        println(Constantes.COMPRA_FINALIZADA)
     }
 }
