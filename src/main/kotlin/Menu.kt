@@ -87,7 +87,7 @@ class Menu(private val carrinho: Carrinho) {
                 when (readln().toInt()) {
                     1 -> carrinho.exibirCarrinho()
                     2 -> menuPrincipal()
-                    3 -> carrinho.editarItem(EntradaDoUsuario.lerCodigoProduto(Constantes.CODIGO_PRODUTO, "editar"))
+//                    3 -> carrinho.editarItem(EntradaDoUsuario.lerCodigoProduto(Constantes.CODIGO_PRODUTO, "editar"))
                     4 -> carrinho.remover(EntradaDoUsuario.lerCodigoProduto(Constantes.CODIGO_PRODUTO, "remover"))
                     5 -> {
                         if (carrinho.produtosAdicionados.isEmpty()) {

@@ -42,11 +42,11 @@ class Combo1(quantidade: Int) : Combo(
     Constantes.COMBO1,
     quantidade
 ) {
-    init {
-        val carrinho = Carrinho()
-        carrinho.escolherProduto(this, carrinho.opcoesRefrigerante, Constantes.REFRIGERANTES)
-        carrinho.escolherProduto(this, carrinho.opcoesSorvete, Constantes.SORVETES)
-    }
+//    init {
+//        val carrinho = Carrinho()
+//        carrinho.escolherProduto(this, carrinho.opcoesRefrigerante, Constantes.REFRIGERANTES)
+//        carrinho.escolherProduto(this, carrinho.opcoesSorvete, Constantes.SORVETES)
+//    }
 }
 
 class Combo2(quantidade: Int) : Combo(
@@ -56,11 +56,11 @@ class Combo2(quantidade: Int) : Combo(
     Constantes.COMBO2,
     quantidade
 ) {
-    init {
-        val carrinho = Carrinho()
-        carrinho.escolherProduto(this, carrinho.opcoesRefrigerante, Constantes.REFRIGERANTES)
-        carrinho.escolherProduto(this, carrinho.opcoesMousses, Constantes.MOUSSES)
-    }
+//    init {
+//        val carrinho = Carrinho()
+//        carrinho.escolherProduto(this, carrinho.opcoesRefrigerante, Constantes.REFRIGERANTES)
+//        carrinho.escolherProduto(this, carrinho.opcoesMousses, Constantes.MOUSSES)
+//    }
 }
 
 class Combo3(quantidade: Int) : Combo(
@@ -70,11 +70,11 @@ class Combo3(quantidade: Int) : Combo(
     Constantes.COMBO3,
     quantidade
 ) {
-    init {
-        val carrinho = Carrinho()
-        carrinho.escolherProduto(this, carrinho.opcoesSuco, Constantes.SUCOS)
-        carrinho.escolherProduto(this, carrinho.opcoesSorvete, Constantes.SORVETES)
-    }
+//    init {
+//        val carrinho = Carrinho()
+//        carrinho.escolherProduto(this, carrinho.opcoesSuco, Constantes.SUCOS)
+//        carrinho.escolherProduto(this, carrinho.opcoesSorvete, Constantes.SORVETES)
+//    }
 }
 
 class Combo4(quantidade: Int) : Combo(
@@ -84,11 +84,11 @@ class Combo4(quantidade: Int) : Combo(
     Constantes.COMBO4,
     quantidade
 ) {
-    init {
-        val carrinho = Carrinho()
-        carrinho.escolherProduto(this, carrinho.opcoesSuco, Constantes.SUCOS)
-        carrinho.escolherProduto(this, carrinho.opcoesMousses, Constantes.MOUSSES)
-    }
+//    init {
+//        val carrinho = Carrinho()
+//        carrinho.escolherProduto(this, carrinho.opcoesSuco, Constantes.SUCOS)
+//        carrinho.escolherProduto(this, carrinho.opcoesMousses, Constantes.MOUSSES)
+//    }
 }
 
 class Combo5(quantidade: Int) : Combo(
@@ -98,11 +98,11 @@ class Combo5(quantidade: Int) : Combo(
     Constantes.COMBO5,
     quantidade
 ) {
-    init {
-        val carrinho = Carrinho()
-        carrinho.escolherProduto(this, carrinho.opcoesRefrigerante, Constantes.REFRIGERANTES)
-        carrinho.escolherProduto(this, carrinho.opcoesSorvete, Constantes.SORVETES)
-    }
+//    init {
+//        val carrinho = Carrinho()
+//        carrinho.escolherProduto(this, carrinho.opcoesRefrigerante, Constantes.REFRIGERANTES)
+//        carrinho.escolherProduto(this, carrinho.opcoesSorvete, Constantes.SORVETES)
+//    }
 }
 
 class Combo6(quantidade: Int) : Combo(
@@ -112,11 +112,11 @@ class Combo6(quantidade: Int) : Combo(
     Constantes.COMBO6,
     quantidade
 ) {
-    init {
-        val carrinho = Carrinho()
-        carrinho.escolherProduto(this, carrinho.opcoesRefrigerante, Constantes.REFRIGERANTES)
-        carrinho.escolherProduto(this, carrinho.opcoesMousses, Constantes.MOUSSES)
-    }
+//    init {
+//        val carrinho = Carrinho()
+//        carrinho.escolherProduto(this, carrinho.opcoesRefrigerante, Constantes.REFRIGERANTES)
+//        carrinho.escolherProduto(this, carrinho.opcoesMousses, Constantes.MOUSSES)
+//    }
 }
 
 class Combo7(quantidade: Int) : Combo(
@@ -126,11 +126,11 @@ class Combo7(quantidade: Int) : Combo(
     Constantes.COMBO7,
     quantidade
 ) {
-    init {
-        val carrinho = Carrinho()
-        carrinho.escolherProduto(this, carrinho.opcoesSuco, Constantes.SUCOS)
-        carrinho.escolherProduto(this, carrinho.opcoesSorvete, Constantes.SORVETES)
-    }
+//    init {
+//        val carrinho = Carrinho()
+//        carrinho.escolherProduto(this, carrinho.opcoesSuco, Constantes.SUCOS)
+//        carrinho.escolherProduto(this, carrinho.opcoesSorvete, Constantes.SORVETES)
+//    }
 }
 
 class Combo8(quantidade: Int) : Combo(
@@ -140,9 +140,9 @@ class Combo8(quantidade: Int) : Combo(
     Constantes.COMBO8,
     quantidade
 ) {
-    init {
-        val carrinho = Carrinho()
-        carrinho.escolherProduto(this, carrinho.opcoesSuco, Constantes.SUCOS)
-        carrinho.escolherProduto(this, carrinho.opcoesMousses, Constantes.MOUSSES)
-    }
+//    init {
+//        val carrinho = Carrinho()
+//        carrinho.escolherProduto(this, carrinho.opcoesSuco, Constantes.SUCOS)
+//        carrinho.escolherProduto(this, carrinho.opcoesMousses, Constantes.MOUSSES)
+//    }
 }

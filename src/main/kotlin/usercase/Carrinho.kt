@@ -54,13 +54,13 @@ class Carrinho {
             else -> Mousse(quantidade)
         }
 
-        when (tipo) {
-            "Refrigerante" -> escolherProduto(produtoEscolhido, opcoesRefrigerante, "REFRIGERANTES")
-            "Suco" -> escolherProduto(produtoEscolhido, opcoesSuco, "SUCOS")
-            "Sorvete" -> escolherProduto(produtoEscolhido, opcoesSorvete, "SORVETES")
-            "Mousse" -> escolherProduto(produtoEscolhido, opcoesMousses, "MOUSSES")
-            else -> adicionarObservacao(produtoEscolhido as Lanche)
-        }
+//        when (tipo) {
+//            "Refrigerante" -> escolherProduto(produtoEscolhido, opcoesRefrigerante, "REFRIGERANTES")
+//            "Suco" -> escolherProduto(produtoEscolhido, opcoesSuco, "SUCOS")
+//            "Sorvete" -> escolherProduto(produtoEscolhido, opcoesSorvete, "SORVETES")
+//            "Mousse" -> escolherProduto(produtoEscolhido, opcoesMousses, "MOUSSES")
+//            else -> adicionarObservacao(produtoEscolhido as Lanche)
+//        }
 
         produtosAdicionados.add(produtoEscolhido)
 
@@ -92,28 +92,28 @@ class Carrinho {
         exibirTotal()
     }
 
-    fun escolherProduto(produto: Produto, opcoes: List<String>, categoria: String) {
-        do {
-            println("\n---------- $categoria DISPONÍVEIS ----------")
-            opcoes.forEachIndexed { index, opcao ->
-                println("\t${index + 1} - $opcao")
-            }
-            print(Constantes.OPCAO_DESEJADA)
-
-            try {
-                val escolha = readln().toInt()
-                if (escolha in 1..opcoes.size) {
-                    produto.tipo = opcoes[escolha - 1]
-                    return
-                } else {
-                    println(Constantes.OPCAO_INVALIDA)
-                }
-            } catch (exception: IllegalArgumentException) {
-                println(Constantes.FORMATO_INVALIDO_ITEM)
-            }
-
-        } while (true)
-    }
+//    fun escolherProduto(produto: Produto, opcoes: List<String>, categoria: String) {
+//        do {
+//            println("\n---------- $categoria DISPONÍVEIS ----------")
+//            opcoes.forEachIndexed { index, opcao ->
+//                println("\t${index + 1} - $opcao")
+//            }
+//            print(Constantes.OPCAO_DESEJADA)
+//
+//            try {
+//                val escolha = readln().toInt()
+//                if (escolha in 1..opcoes.size) {
+//                    produto.tipo = opcoes[escolha - 1]
+//                    return
+//                } else {
+//                    println(Constantes.OPCAO_INVALIDA)
+//                }
+//            } catch (exception: IllegalArgumentException) {
+//                println(Constantes.FORMATO_INVALIDO_ITEM)
+//            }
+//
+//        } while (true)
+//    }
 
     private fun adicionarObservacao(lanche: Lanche) {
         do {
@@ -157,12 +157,12 @@ class Carrinho {
         } else return produtoProcurado.first()
     }
 
-    fun editarItem(codigo: String) {
+    fun editarItem(codigo: String, quantidade: Int) {
         println("\n---------- EDITANDO PRODUTO ----------")
         try {
             val produto = procurarProduto(codigo)
 
-            var quantidade = EntradaDoUsuario.lerQuantidade(Constantes.NOVA_QUANTIDADE, produto.nome)
+//            var quantidade = EntradaDoUsuario.lerQuantidade(Constantes.NOVA_QUANTIDADE, produto.nome)
 
             produto.quantidade = quantidade
 
