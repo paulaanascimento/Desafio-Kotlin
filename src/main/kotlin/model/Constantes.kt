@@ -1,3 +1,5 @@
+package model
+
 object Constantes {
     const val BOAS_VINDAS = "\nBOAS VINDAS À LANCHONETE FASTFOOD"
     const val ITEM_DESEJADO = "Digite o número correspondente ao item desejado: "
@@ -20,4 +22,9 @@ object Constantes {
     const val VALOR_INVALIDO_QUANTIDADE = "\nFormato inválido! Para adicionar a quantidade, você deve informar o número correspondente."
     const val NUMERO_MAIOR_QUE_ZERO = "\nDigite um número maior que zero."
     const val QUANTIDADE = "\nDigite a quantidade de que deseja comprar de"
+    const val NOVA_QUANTIDADE = "\nDigite a nova quantidade de"
+    const val CODIGO_PRODUTO = "Digite o código do produto que deseja"
+    const val OPCAO_INVALIDA = "\nOpção inválida, tente novamente."
+    const val FORMATO_INVALIDO_OPCAO = "\nFormato inválido, para escolher uma opção, você deve informar o número dela."
+    const val FORMATO_INVALIDO_ITEM = "\nFormato inválido, para escolher o item, você deve informar o número dele."
 }

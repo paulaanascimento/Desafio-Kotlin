@@ -1,7 +1,6 @@
 package model.Pagamento
 
-import Constantes
-import model.Pagamento.FormaDePagamento
+import model.Constantes
 
 class ValeRefeicao : FormaDePagamento {
     override fun processarPagamento(valor: Double) {

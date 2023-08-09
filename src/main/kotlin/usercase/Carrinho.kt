@@ -1,6 +1,6 @@
 package usercase
 
-import EntradaDoUsuario
+import model.Constantes
 import model.Produtos.*
 import model.Produtos.Bebidas.Refrigerante
 import model.Produtos.Bebidas.Suco
@@ -32,34 +32,33 @@ class Carrinho {
 
     private fun mostrarIngredientes(tipo: String) {
         when (tipo) {
-            "x-burger" -> {
+            "X-Burger" -> {
                 println("\n---------- X-BURGER ----------\nIngredientes: ${Xburger.ingredientes}")
             }
 
-            "x-salada" -> {
+            "X-Salada" -> {
                 println("\n---------- X-SALADA ----------\nIngredientes: ${Xsalada.ingredientes}")
             }
         }
     }
 
-    fun adicionar(tipo: String) {
+    fun adicionar(tipo: String, quantidade:Int) {
         mostrarIngredientes(tipo)
-        val quantidade = EntradaDoUsuario.lerQuantidade(tipo)
 
         val produtoEscolhido = when (tipo) {
-            "x-burger" -> Xburger(quantidade)
-            "x-salada" -> Xsalada(quantidade)
-            "refrigerante" -> Refrigerante(quantidade)
-            "suco" -> Suco(quantidade)
-            "sorvete" -> Sorvete(quantidade)
+            "X-Burger" -> Xburger(quantidade)
+            "X-Salada" -> Xsalada(quantidade)
+            "Refrigerante" -> Refrigerante(quantidade)
+            "Suco" -> Suco(quantidade)
+            "Sorvete" -> Sorvete(quantidade)
             else -> Mousse(quantidade)
         }
 
         when (tipo) {
-            "refrigerante" -> escolherProduto(produtoEscolhido, opcoesRefrigerante, "REFRIGERANTES")
-            "suco" -> escolherProduto(produtoEscolhido, opcoesSuco, "SUCOS")
-            "sorvete" -> escolherProduto(produtoEscolhido, opcoesSorvete, "SORVETES")
-            "mousse" -> escolherProduto(produtoEscolhido, opcoesMousses, "MOUSSES")
+            "Refrigerante" -> escolherProduto(produtoEscolhido, opcoesRefrigerante, "REFRIGERANTES")
+            "Suco" -> escolherProduto(produtoEscolhido, opcoesSuco, "SUCOS")
+            "Sorvete" -> escolherProduto(produtoEscolhido, opcoesSorvete, "SORVETES")
+            "Mousse" -> escolherProduto(produtoEscolhido, opcoesMousses, "MOUSSES")
             else -> adicionarObservacao(produtoEscolhido as Lanche)
         }
 
@@ -71,9 +70,7 @@ class Carrinho {
         exibirTotal()
     }
 
-    fun adicionarCombo(opcao: Int) {
-
-        val quantidade = EntradaDoUsuario.lerQuantidade("combo")
+    fun adicionarCombo(opcao: Int, quantidade:Int) {
 
         val comboEscolhido = when (opcao) {
             1 -> Combo1(quantidade)
@@ -84,7 +81,7 @@ class Carrinho {
             6 -> Combo6(quantidade)
             7 -> Combo7(quantidade)
             8 -> Combo8(quantidade)
-            else -> throw IllegalArgumentException("Opção inválida")
+            else -> throw IllegalArgumentException(Constantes.OPCAO_INVALIDA)
         }
 
         produtosAdicionados.add(comboEscolhido)
@@ -101,7 +98,7 @@ class Carrinho {
             opcoes.forEachIndexed { index, opcao ->
                 println("\t${index + 1} - $opcao")
             }
-            print("Digite o número correspondente a opção desejada: ")
+            print(Constantes.OPCAO_DESEJADA)
 
             try {
                 val escolha = readln().toInt()
@@ -109,10 +106,10 @@ class Carrinho {
                     produto.tipo = opcoes[escolha - 1]
                     return
                 } else {
-                    println("\nOpção inválida, tente novamente.")
+                    println(Constantes.OPCAO_INVALIDA)
                 }
             } catch (exception: IllegalArgumentException) {
-                println("\nFormato inválido, para escolher o item, você deve informar o número dele.")
+                println(Constantes.FORMATO_INVALIDO_ITEM)
             }
 
         } while (true)
@@ -125,7 +122,7 @@ class Carrinho {
                         "\t1 - Sim\n" +
                         "\t2 - Não"
             )
-            print("Digite o número correspondente a opção desejada: ")
+            print(Constantes.OPCAO_DESEJADA)
 
             try {
                 when (readln().toInt()) {
@@ -137,10 +134,10 @@ class Carrinho {
                     }
 
                     2 -> return
-                    else -> println("\nOpção inválida, tente novamente.")
+                    else -> println(Constantes.OPCAO_INVALIDA)
                 }
             } catch (exception: IllegalArgumentException) {
-                println("\nFormato inválido, para escolher uma opção, você deve informar o número dela.")
+                println(Constantes.FORMATO_INVALIDO_OPCAO)
             }
 
         } while (true)
@@ -160,23 +157,12 @@ class Carrinho {
         } else return produtoProcurado.first()
     }
 
-    fun editarItem() {
+    fun editarItem(codigo: String) {
         println("\n---------- EDITANDO PRODUTO ----------")
-        print("Digite o código do produto que deseja editar: ")
-
         try {
-            val produto = procurarProduto(readln())
-            produto.mostrarInformacoes()
+            val produto = procurarProduto(codigo)
 
-            var quantidade: Int
-            do {
-                print("\nDigite a nova quantidade: ")
-                quantidade = readln().toInt()
-
-                if (quantidade <= 0) {
-                    println("\nDigite um número maior que zero.")
-                }
-            } while (quantidade <= 0)
+            var quantidade = EntradaDoUsuario.lerQuantidade(Constantes.NOVA_QUANTIDADE, produto.nome)
 
             produto.quantidade = quantidade
 
@@ -184,17 +170,16 @@ class Carrinho {
             produto.mostrarInformacoes()
             exibirTotal()
         } catch (exception: IllegalArgumentException) {
-            println("\nFormato inválido! Para adicionar a quantidade, você deve informar o número correspondente.")
+            println(Constantes.VALOR_INVALIDO_QUANTIDADE)
         } catch (exception: NoSuchElementException) {
             println(exception.message)
         }
     }
 
-    fun remover() {
+    fun remover(codigo: String) {
         println("\n---------- REMOVENDO PRODUTO ----------")
-        print("Digite o código do produto que deseja remover: ")
         try {
-            val produto = procurarProduto(readln())
+            val produto = procurarProduto(codigo)
             println("\n---------- PRODUTO ----------")
             produto.mostrarInformacoes()
             produtosAdicionados.remove(produto)

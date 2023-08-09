@@ -1,5 +1,6 @@
 package usercase
 
+import model.Constantes
 import model.Pagamento.CartaoDeCredito
 import model.Pagamento.CartaoDeDebito
 import model.Pagamento.Dinheiro
@@ -26,7 +27,7 @@ class Pagamento {
                         "\t3 - Vale Refeição\n" +
                         "\t4 - Dinheiro"
             )
-            print("Digite o número correspondente a opção desejada: ")
+            print(Constantes.OPCAO_DESEJADA)
 
             try {
                 val opcao = readln().toInt()
@@ -36,10 +37,10 @@ class Pagamento {
                     println("CÓDIGO PARA RETIRAR O PEDIDO CLI$id")
                     return
                 } else {
-                    println("\nOpção inválida, tente novamente.")
+                    println(Constantes.OPCAO_INVALIDA)
                 }
             } catch (exception: IllegalArgumentException) {
-                println("\nFormato inválido, para escolher o item, você deve informar o número dele.")
+                println(Constantes.FORMATO_INVALIDO_ITEM)
             } catch (exception: UnsupportedOperationException) {
                 println(exception.message)
             }

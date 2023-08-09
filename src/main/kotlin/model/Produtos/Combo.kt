@@ -1,6 +1,6 @@
 package model.Produtos
 
-import Constantes
+import model.Constantes
 import model.Produtos.Bebidas.Bebida
 import model.Produtos.Bebidas.Refrigerante
 import model.Produtos.Bebidas.Suco
